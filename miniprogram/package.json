@@ -1,0 +1,23 @@
+{
+  "name": "timeless-love-miniprogram",
+  "version": "1.0.0",
+  "description": "TimelessLove 小程序",
+  "main": "app.js",
+  "scripts": {
+    "dev": "echo '请使用微信开发者工具打开项目'",
+    "build": "echo '请使用微信开发者工具构建'"
+  },
+  "keywords": [
+    "wechat",
+    "miniprogram",
+    "love"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@vant/weapp": "^1.11.6",
+    "dayjs": "^1.11.10",
+    "mobx-miniprogram": "^4.13.2",
+    "mobx-miniprogram-bindings": "^2.1.5"
+  }
+}

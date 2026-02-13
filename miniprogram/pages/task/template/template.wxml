@@ -1,0 +1,57 @@
+<view class="template-container">
+  <view class="category-tabs">
+    <scroll-view scroll-x class="tab-scroll">
+      <block wx:for="{{categories}}" wx:key="key">
+        <view class="tab-item {{currentCategory === item.key ? 'active' : ''}}"
+              bindtap="onCategoryChange" data-category="{{item.key}}">
+          <text class="tab-icon">{{item.icon}}</text>
+          <text class="tab-name">{{item.name}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <scroll-view scroll-y class="template-list">
+    <block wx:for="{{filteredTemplates}}" wx:key="id">
+      <view class="template-card" bindtap="onTemplateSelect" data-template="{{item}}">
+        <view class="card-header">
+          <text class="template-icon">{{item.icon}}</text>
+          <view class="template-info">
+            <text class="template-title">{{item.title}}</text>
+            <view class="template-meta">
+              <text class="difficulty">
+                <block wx:for="{{item.difficulty}}" wx:key="*this" wx:for-item="star">⭐</block>
+              </text>
+            </view>
+          </view>
+        </view>
+        
+        <text class="template-desc">{{item.description}}</text>
+        
+        <view class="template-footer">
+          <view class="reward-tags">
+            <view class="reward-tag">
+              <text class="reward-icon">❤️</text>
+              <text>+{{item.reward_points}}</text>
+            </view>
+            <view class="reward-tag">
+              <text class="reward-icon">💰</text>
+              <text>+{{item.reward_coins}}</text>
+            </view>
+          </view>
+          
+          <view class="tag-list">
+            <block wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">
+              <text class="task-tag">{{tag}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{filteredTemplates.length === 0}}" class="empty-state">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无模板</text>
+    </view>
+  </scroll-view>
+</view>

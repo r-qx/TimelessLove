@@ -1,0 +1,65 @@
+<view class="welcome-container">
+  <view class="bg-particles">
+    <view class="particle p1"></view>
+    <view class="particle p2"></view>
+    <view class="particle p3"></view>
+    <view class="particle p4"></view>
+    <view class="particle p5"></view>
+  </view>
+
+  <swiper class="feature-swiper" indicator-dots indicator-color="rgba(201,169,110,0.15)" 
+          indicator-active-color="rgba(201,169,110,0.6)" autoplay circular duration="1000"
+          interval="4500">
+    <swiper-item>
+      <view class="feature-slide">
+        <view class="slide-content">
+          <view class="icon-wrap animate-breathe">
+            <text class="feature-icon">🏠</text>
+          </view>
+          <text class="feature-title">TimelessLove</text>
+          <text class="feature-subtitle">our sanctuary</text>
+          <view class="divider-line"></view>
+          <text class="feature-desc">两个人的世界\n用心去经营，用爱来守护</text>
+        </view>
+      </view>
+    </swiper-item>
+
+    <swiper-item>
+      <view class="feature-slide">
+        <view class="slide-content">
+          <view class="icon-wrap animate-breathe">
+            <text class="feature-icon">💎</text>
+          </view>
+          <text class="feature-title">甜蜜任务</text>
+          <text class="feature-subtitle">ritual of love</text>
+          <view class="divider-line"></view>
+          <text class="feature-desc">为彼此创造仪式感\n每一次完成都是爱的证明</text>
+        </view>
+      </view>
+    </swiper-item>
+
+    <swiper-item>
+      <view class="feature-slide">
+        <view class="slide-content">
+          <view class="icon-wrap animate-breathe">
+            <text class="feature-icon">🌙</text>
+          </view>
+          <text class="feature-title">时光印记</text>
+          <text class="feature-subtitle">eternal moments</text>
+          <view class="divider-line"></view>
+          <text class="feature-desc">珍藏每一刻心动\n让回忆成为最奢侈的收藏</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="action-section">
+    <text class="welcome-tip">您可以选择先浏览功能介绍，或直接登录使用</text>
+    <button class="browse-btn" bindtap="skipLogin">
+      <text>先看看功能介绍</text>
+    </button>
+    <button class="start-btn" bindtap="goToLogin">
+      <text>立即登录使用</text>
+    </button>
+  </view>
+</view>

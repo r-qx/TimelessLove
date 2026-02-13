@@ -1,0 +1,136 @@
+<view class="index-container">
+  <view wx:if="{{!coupleInfo && loading}}" class="loading-container">
+    <view class="loading-card">
+      <view class="loading-heart animate-breathe">💕</view>
+      <van-loading size="24px" color="#C2185B">加载中...</van-loading>
+    </view>
+  </view>
+
+  <view wx:if="{{!coupleInfo && !loading}}" class="guest-view">
+    <view class="guest-bg-glow"></view>
+    <view class="guest-card">
+      <view class="guest-icon-wrap animate-breathe">
+        <text class="guest-icon">🏠</text>
+      </view>
+      <text class="guest-title">TimelessLove</text>
+      <text class="guest-subtitle">属于我们的小家</text>
+      <view class="guest-divider"></view>
+      <text class="guest-desc">登录后开启你们的甜蜜旅程</text>
+      <button class="guest-login-btn" bindtap="goToLogin">
+        <text class="guest-btn-text">立即登录</text>
+      </button>
+    </view>
+  </view>
+
+  <view wx:if="{{coupleInfo}}" class="home-content">
+    <view class="hero-card">
+      <view class="hero-bg"></view>
+      <view class="hero-inner">
+        <view class="couple-avatars">
+          <view class="avatar-wrap">
+            <image class="couple-avatar" src="{{coupleInfo.user1.avatar}}" />
+            <view class="avatar-ring"></view>
+          </view>
+          <view class="heart-bridge">
+            <text class="heart-emoji animate-breathe">💕</text>
+            <view class="heart-line"></view>
+          </view>
+          <view class="avatar-wrap">
+            <image class="couple-avatar" src="{{coupleInfo.user2.avatar}}" />
+            <view class="avatar-ring"></view>
+          </view>
+        </view>
+
+        <view class="level-badge">
+          <text class="level-name">{{levelName}}</text>
+          <text class="level-dot">·</text>
+          <text class="level-num">Lv.{{coupleInfo.level}}</text>
+        </view>
+
+        <view class="exp-bar">
+          <view class="exp-fill" style="width: {{progress}}%"></view>
+          <view class="exp-glow" style="left: {{progress}}%"></view>
+        </view>
+
+        <view class="stats-row">
+          <view class="stat-item">
+            <text class="stat-icon">❤️</text>
+            <text class="stat-value">{{coupleInfo.love_points}}</text>
+            <text class="stat-label">爱心值</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-icon">💰</text>
+            <text class="stat-value">{{coupleInfo.love_coins}}</text>
+            <text class="stat-label">爱情币</text>
+          </view>
+          <view class="stat-divider"></view>
+          <view class="stat-item">
+            <text class="stat-icon">📅</text>
+            <text class="stat-value">{{togetherDays}}</text>
+            <text class="stat-label">天</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="quick-actions">
+      <view class="action-card" bindtap="goToTaskList">
+        <view class="action-icon-bg bg-rose">
+          <text class="action-icon-emoji">📝</text>
+        </view>
+        <text class="action-name">任务</text>
+      </view>
+      <view class="action-card" bindtap="showComingSoon">
+        <view class="action-icon-bg bg-gold">
+          <text class="action-icon-emoji">📸</text>
+        </view>
+        <text class="action-name">瞬间</text>
+      </view>
+      <view class="action-card" bindtap="showComingSoon">
+        <view class="action-icon-bg bg-purple">
+          <text class="action-icon-emoji">💰</text>
+        </view>
+        <text class="action-name">银行</text>
+      </view>
+      <view class="action-card" bindtap="showComingSoon">
+        <view class="action-icon-bg bg-warm">
+          <text class="action-icon-emoji">🎁</text>
+        </view>
+        <text class="action-name">心愿</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title-wrap">
+          <view class="section-indicator"></view>
+          <text class="section-title">进行中的任务</text>
+        </view>
+        <text class="section-more" bindtap="goToTaskList">查看全部</text>
+      </view>
+      <view class="task-list">
+        <block wx:for="{{tasks}}" wx:key="id">
+          <view class="task-card" bindtap="goToTaskDetail" data-id="{{item._id}}">
+            <view class="task-card-left">
+              <view class="task-type-dot {{item.type}}"></view>
+              <view class="task-card-info">
+                <text class="task-card-title">{{item.title}}</text>
+                <text class="task-card-meta">{{item.typeText}} · {{item.deadlineText}}</text>
+              </view>
+            </view>
+            <view class="task-card-reward">
+              <text class="reward-value">+{{item.reward_points}}</text>
+              <text class="reward-label">❤️</text>
+            </view>
+          </view>
+        </block>
+        <view wx:if="{{tasks.length === 0}}" class="empty-state">
+          <text class="empty-icon">🌸</text>
+          <text class="empty-text">暂无进行中的任务</text>
+          <text class="empty-hint">去创建一个甜蜜任务吧</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

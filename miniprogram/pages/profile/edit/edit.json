@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "编辑资料",
+  "navigationBarBackgroundColor": "#F5EDE4",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

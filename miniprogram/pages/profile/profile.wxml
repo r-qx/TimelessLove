@@ -1,0 +1,40 @@
+<view class="profile-container">
+  <view class="profile-header">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="user-card" bindtap="goToEdit">
+        <view class="avatar-section">
+          <view class="avatar-outer">
+            <image class="user-avatar" src="{{userInfo.avatar}}" />
+            <view class="avatar-ring-glow"></view>
+          </view>
+        </view>
+        <view class="user-meta">
+          <text class="user-nickname">{{userInfo.nickname}}</text>
+          <text class="user-id">ID: {{userInfo._id}}</text>
+        </view>
+        <view class="edit-arrow">
+          <van-icon name="arrow" color="rgba(255,255,255,0.6)" size="18px" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-card">
+      <view class="menu-item" bindtap="goToCouple">
+        <view class="menu-icon-wrap rose">
+          <text class="menu-emoji">💕</text>
+        </view>
+        <text class="menu-title">情侣信息</text>
+        <van-icon name="arrow" color="#B5A3A8" size="16px" />
+      </view>
+    </view>
+  </view>
+
+  <view class="logout-section">
+    <button class="logout-btn" bindtap="onLogout">
+      <text class="logout-text">退出登录</text>
+    </button>
+  </view>
+</view>

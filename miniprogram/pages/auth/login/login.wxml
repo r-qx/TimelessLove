@@ -1,0 +1,57 @@
+<view class="login-container">
+  <view class="bg-overlay"></view>
+  <view class="bg-glow g1"></view>
+  <view class="bg-glow g2"></view>
+
+  <view class="login-box">
+    <view class="logo-section">
+      <view class="logo-circle animate-breathe">
+        <text class="logo-emoji">🏠</text>
+      </view>
+      <text class="brand-name">TimelessLove</text>
+      <view class="brand-divider"></view>
+      <text class="brand-slogan">属于我们的小家</text>
+    </view>
+
+    <view class="login-card">
+      <button class="login-btn" bindtap="onLogin">
+        <view class="btn-inner">
+          <text class="wechat-icon">💬</text>
+          <text class="btn-label">微信一键登录</text>
+        </view>
+      </button>
+
+      <view class="agreement-box">
+        <van-checkbox value="{{ agreed }}" bind:change="onAgreeChange" icon-size="16px"
+          checked-color="#C2185B">
+          <text class="agreement-text">我已阅读并同意</text>
+          <text class="agreement-link" bindtap="goToAgreement" catchtap="goToAgreement">《用户协议》</text>
+          <text class="agreement-text">和</text>
+          <text class="agreement-link" bindtap="goToPrivacy" catchtap="goToPrivacy">《隐私政策》</text>
+        </van-checkbox>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-decoration">
+    <text class="bottom-text">用心守护每一份爱</text>
+  </view>
+
+  <van-popup show="{{ showAgreement }}" position="center" round closeable bind:close="closeAgreement">
+    <view class="agreement-popup">
+      <view class="popup-title">用户协议</view>
+      <scroll-view class="popup-content" scroll-y>
+        <text class="content-text">{{agreementContent}}</text>
+      </scroll-view>
+    </view>
+  </van-popup>
+
+  <van-popup show="{{ showPrivacy }}" position="center" round closeable bind:close="closePrivacy">
+    <view class="agreement-popup">
+      <view class="popup-title">隐私政策</view>
+      <scroll-view class="popup-content" scroll-y>
+        <text class="content-text">{{privacyContent}}</text>
+      </scroll-view>
+    </view>
+  </van-popup>
+</view>

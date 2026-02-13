@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我们的小家",
+  "navigationBarBackgroundColor": "#F5EDE4",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "van-empty": "@vant/weapp/empty/index",
+    "van-loading": "@vant/weapp/loading/index"
+  }
+}

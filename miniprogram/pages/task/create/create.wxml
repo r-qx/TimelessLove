@@ -1,0 +1,144 @@
+<view class="create-container">
+  <scroll-view scroll-y class="form-scroll">
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot"></view>
+        <text>任务类型</text>
+      </view>
+      <view class="type-selector">
+        <view class="type-option {{formData.type === 'personal' ? 'active' : ''}}" 
+              bindtap="onTypeChange" data-type="personal">
+          <text class="type-emoji">👤</text>
+          <text class="type-name">个人任务</text>
+        </view>
+        <view class="type-option {{formData.type === 'cooperation' ? 'active' : ''}}" 
+              bindtap="onTypeChange" data-type="cooperation">
+          <text class="type-emoji">👫</text>
+          <text class="type-name">双人协作</text>
+        </view>
+        <view class="type-option {{formData.type === 'periodic' ? 'active' : ''}}" 
+              bindtap="onTypeChange" data-type="periodic">
+          <text class="type-emoji">🔄</text>
+          <text class="type-name">周期任务</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot"></view>
+        <text>任务标题</text>
+        <text class="required">*</text>
+      </view>
+      <van-field
+        value="{{ formData.title }}"
+        placeholder="给任务起个甜蜜的名字吧"
+        maxlength="20"
+        show-word-limit
+        bind:change="onTitleChange"
+        border="{{ false }}"
+      />
+    </view>
+
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot"></view>
+        <text>任务描述</text>
+      </view>
+      <van-field
+        value="{{ formData.description }}"
+        type="textarea"
+        placeholder="详细描述任务要求和目标"
+        maxlength="200"
+        show-word-limit
+        autosize
+        bind:change="onDescChange"
+        border="{{ false }}"
+      />
+    </view>
+
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot"></view>
+        <text>难度等级</text>
+      </view>
+      <view class="difficulty-selector">
+        <block wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
+          <view class="star-item {{formData.difficulty >= item ? 'active' : ''}}" 
+                bindtap="onDifficultySelect" data-level="{{item}}">
+            <text class="star-emoji">⭐</text>
+          </view>
+        </block>
+      </view>
+      <text class="difficulty-label">{{difficultyText[formData.difficulty]}}</text>
+    </view>
+
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot gold"></view>
+        <text>奖励设置</text>
+      </view>
+      <view class="reward-row">
+        <view class="reward-item">
+          <text class="reward-icon">❤️</text>
+          <text class="reward-name">爱心值</text>
+          <van-stepper value="{{ formData.reward_points }}" min="5" max="100" step="5" 
+                      bind:change="onPointsChange" button-size="28px" />
+        </view>
+        <view class="reward-item">
+          <text class="reward-icon">💰</text>
+          <text class="reward-name">爱情币</text>
+          <van-stepper value="{{ formData.reward_coins }}" min="1" max="50" step="1"
+                      bind:change="onCoinsChange" button-size="28px" />
+        </view>
+      </view>
+    </view>
+
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot"></view>
+        <text>截止时间</text>
+      </view>
+      <view class="date-picker-row" bindtap="showDatePicker">
+        <text class="date-value {{formData.deadline ? '' : 'placeholder'}}">
+          {{ formData.deadline || '请选择截止时间' }}
+        </text>
+        <van-icon name="arrow" color="#B5A3A8" size="16px" />
+      </view>
+    </view>
+
+    <view class="form-card">
+      <view class="form-section-title">
+        <view class="section-dot gold"></view>
+        <text>任务标签</text>
+        <text class="optional">（可选）</text>
+      </view>
+      <view class="tag-grid">
+        <block wx:for="{{tagOptions}}" wx:key="*this">
+          <view class="tag-chip {{formData.tags.includes(item) ? 'active' : ''}}"
+                bindtap="onTagToggle" data-tag="{{item}}">
+            {{item}}
+          </view>
+        </block>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="submit-bar">
+    <van-button round block color="#C2185B" bind:click="onSubmit" loading="{{submitting}}"
+      custom-style="letter-spacing: 4rpx; font-weight: 600;">
+      创建任务
+    </van-button>
+  </view>
+
+  <van-popup show="{{ showDate }}" position="bottom" bind:close="closeDatePicker"
+    custom-style="background: #FEF7F0;">
+    <van-datetime-picker
+      type="datetime"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      bind:confirm="onDateConfirm"
+      bind:cancel="closeDatePicker"
+    />
+  </van-popup>
+</view>

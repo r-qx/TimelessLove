@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "创建任务",
+  "navigationBarBackgroundColor": "#F5EDE4",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

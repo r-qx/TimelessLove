@@ -1,0 +1,164 @@
+.profile-container {
+  min-height: 100vh;
+  background: #F5EDE4;
+  padding-bottom: 140rpx;
+}
+
+.profile-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(170deg, #0D0709 0%, #1A0A12 20%, #2D1020 50%, #4A1A32 80%, #5C1A38 100%);
+}
+
+.header-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(201, 169, 110, 0.04) 0%, transparent 60%);
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  padding: 80rpx 36rpx 52rpx;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-section {
+  margin-right: 28rpx;
+}
+
+.avatar-outer {
+  position: relative;
+  width: 128rpx;
+  height: 128rpx;
+}
+
+.user-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3);
+}
+
+.avatar-ring-glow {
+  position: absolute;
+  top: -8rpx;
+  left: -8rpx;
+  right: -8rpx;
+  bottom: -8rpx;
+  border-radius: 50%;
+  border: 1rpx solid rgba(201, 169, 110, 0.1);
+}
+
+.user-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.user-nickname {
+  font-size: 36rpx;
+  font-weight: 300;
+  color: rgba(245, 237, 228, 0.9);
+  letter-spacing: 4rpx;
+}
+
+.user-id {
+  font-size: 22rpx;
+  color: rgba(201, 169, 110, 0.35);
+  letter-spacing: 2rpx;
+}
+
+.edit-arrow {
+  padding: 16rpx;
+}
+
+.menu-section {
+  padding: 24rpx 24rpx 0;
+}
+
+.menu-card {
+  background: rgba(255, 252, 248, 0.88);
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(46, 26, 32, 0.03);
+  border: 1rpx solid rgba(201, 169, 110, 0.05);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 28rpx;
+  gap: 20rpx;
+}
+
+.menu-icon-wrap {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon-wrap.rose {
+  background: rgba(139, 34, 82, 0.04);
+  border: 1rpx solid rgba(139, 34, 82, 0.06);
+}
+
+.menu-emoji {
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+.menu-title {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #2E1A20;
+  letter-spacing: 1rpx;
+}
+
+.logout-section {
+  padding: 60rpx 32rpx;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 96rpx;
+  background: transparent;
+  border: 1rpx solid rgba(139, 34, 82, 0.1);
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-btn::after {
+  border: none;
+}
+
+.logout-text {
+  font-size: 28rpx;
+  color: #8B2252;
+  font-weight: 500;
+  letter-spacing: 4rpx;
+}

@@ -1,0 +1,74 @@
+<view class="edit-container">
+  <view class="avatar-section">
+    <view class="avatar-card" bindtap="chooseAvatar">
+      <view class="avatar-ring">
+        <image class="edit-avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
+        <view class="avatar-overlay">
+          <text class="camera-emoji">📷</text>
+          <text class="overlay-text">更换</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="form-section">
+    <view class="form-card">
+      <view class="field-item">
+        <text class="field-label">昵称</text>
+        <van-field
+          value="{{ userInfo.nickname }}"
+          placeholder="请输入昵称"
+          bind:change="onNicknameChange"
+          maxlength="20"
+          border="{{ false }}"
+          input-align="right"
+        />
+      </view>
+
+      <view class="field-divider"></view>
+
+      <view class="field-item" bindtap="showGenderPicker">
+        <text class="field-label">性别</text>
+        <view class="field-value-row">
+          <text class="field-value">{{ genderText }}</text>
+          <van-icon name="arrow" color="#B5A3A8" size="14px" />
+        </view>
+      </view>
+
+      <view class="field-divider"></view>
+
+      <view class="field-item">
+        <text class="field-label">生日</text>
+        <picker mode="date" value="{{userInfo.birthday}}" bindchange="onBirthdayChange">
+          <view class="field-value-row">
+            <text class="field-value {{userInfo.birthday ? '' : 'placeholder'}}">
+              {{ userInfo.birthday || '请选择生日' }}
+            </text>
+            <van-icon name="arrow" color="#B5A3A8" size="14px" />
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="save-section">
+    <van-button round block color="#C2185B" bind:click="onSave" loading="{{saving}}"
+      custom-style="letter-spacing: 4rpx; font-weight: 600;">
+      保存修改
+    </van-button>
+  </view>
+
+  <van-popup show="{{ genderPickerShow }}" position="bottom" bind:close="closeGenderPicker"
+    custom-style="background: #FEF7F0;">
+    <van-picker
+      columns="{{ genderColumns }}"
+      value-key="text"
+      bind:confirm="onGenderConfirm"
+      bind:cancel="closeGenderPicker"
+      show-toolbar="{{ true }}"
+      title="选择性别"
+      confirm-button-text="确定"
+      cancel-button-text="取消"
+    />
+  </van-popup>
+</view>

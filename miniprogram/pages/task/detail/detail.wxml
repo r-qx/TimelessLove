@@ -1,0 +1,139 @@
+<view class="detail-container">
+  <view wx:if="{{loading}}" class="loading-state">
+    <view class="loading-heart animate-breathe">💕</view>
+    <van-loading size="24px" color="#C2185B">加载中...</van-loading>
+  </view>
+
+  <view wx:if="{{!loading && !task}}" class="empty-state">
+    <text class="empty-icon">🌙</text>
+    <text class="empty-text">任务不存在</text>
+  </view>
+
+  <view wx:if="{{task}}" class="task-detail">
+    <view class="detail-header">
+      <view class="header-top">
+        <view class="title-area">
+          <view class="type-indicator {{task.type}}"></view>
+          <text class="detail-title">{{task.title}}</text>
+        </view>
+        <view class="status-badge {{task.status}}">{{task.statusText}}</view>
+      </view>
+    </view>
+
+    <view class="detail-card">
+      <view class="card-section">
+        <text class="card-label">任务描述</text>
+        <text class="card-value desc">{{task.description || '暂无描述'}}</text>
+      </view>
+      
+      <view class="card-divider"></view>
+
+      <view class="info-grid">
+        <view class="grid-item">
+          <text class="grid-label">类型</text>
+          <text class="grid-value">{{task.typeText}}</text>
+        </view>
+        <view class="grid-item">
+          <text class="grid-label">难度</text>
+          <text class="grid-value gold">⭐ {{task.difficulty}}</text>
+        </view>
+        <view class="grid-item">
+          <text class="grid-label">爱心值</text>
+          <text class="grid-value accent">+{{task.reward_points}}</text>
+        </view>
+        <view class="grid-item">
+          <text class="grid-label">爱情币</text>
+          <text class="grid-value accent">+{{task.reward_coins}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{task.deadline}}" class="card-divider"></view>
+      <view wx:if="{{task.deadline}}" class="card-section">
+        <text class="card-label">截止时间</text>
+        <text class="card-value">{{task.deadlineText}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{task.status === 'completed' && task.proof}}" class="detail-card">
+      <view class="card-section">
+        <text class="card-section-title">完成证明</text>
+        <text class="card-value desc">{{task.proof.content}}</text>
+        <view wx:if="{{task.proof.media && task.proof.media.length > 0}}" class="proof-gallery">
+          <image wx:for="{{task.proof.media}}" wx:key="index" 
+                 class="proof-img" src="{{item}}" mode="aspectFill" />
+        </view>
+      </view>
+    </view>
+
+    <view class="action-bar">
+      <van-button wx:if="{{task.status === 'pending' && !isCreator}}" 
+                  round block color="#C2185B" bind:click="onApprove" loading="{{approving}}">
+        同意任务
+      </van-button>
+      
+      <van-button wx:if="{{task.status === 'approved'}}" 
+                  round block color="#C2185B" bind:click="onStart" loading="{{starting}}">
+        开始任务
+      </van-button>
+      
+      <van-button wx:if="{{task.status === 'in_progress'}}" 
+                  round block color="#C2185B" bind:click="showCompleteDialog">
+        完成任务
+      </van-button>
+      
+      <van-button wx:if="{{task.status === 'completed' && !isProofUser}}" 
+                  round block color="#C2185B" bind:click="onVerify" loading="{{verifying}}">
+        验收任务
+      </van-button>
+
+      <view wx:if="{{task.status === 'verified'}}" class="verified-badge">
+        <text class="verified-icon">✨</text>
+        <text class="verified-text">已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <van-popup show="{{ showComplete }}" position="bottom" round bind:close="closeCompleteDialog"
+    custom-style="background: #FEF7F0;">
+    <view class="complete-popup">
+      <view class="popup-header">
+        <text class="popup-title">提交完成证明</text>
+        <text class="popup-subtitle">记录这份成就感</text>
+      </view>
+      
+      <van-field
+        value="{{ completeContent }}"
+        type="textarea"
+        placeholder="描述一下任务完成情况吧"
+        maxlength="200"
+        show-word-limit
+        autosize
+        bind:change="onCompleteContentChange"
+      />
+
+      <view class="upload-area">
+        <text class="upload-label">上传图片（可选）</text>
+        <view class="image-grid">
+          <block wx:for="{{completeImages}}" wx:key="index">
+            <view class="img-thumb">
+              <image src="{{item}}" mode="aspectFill" />
+              <view class="img-remove" bindtap="deleteImage" data-index="{{index}}">
+                <text>×</text>
+              </view>
+            </view>
+          </block>
+          <view wx:if="{{completeImages.length < 3}}" class="img-add" bindtap="chooseImage">
+            <text class="add-icon">+</text>
+            <text class="add-text">添加</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="popup-bottom">
+        <van-button round block color="#C2185B" bind:click="submitComplete" loading="{{completing}}">
+          提交
+        </van-button>
+      </view>
+    </view>
+  </van-popup>
+</view>

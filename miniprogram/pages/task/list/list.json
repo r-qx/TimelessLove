@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "甜蜜任务",
+  "navigationBarBackgroundColor": "#F5EDE4",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "van-empty": "@vant/weapp/empty/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}
